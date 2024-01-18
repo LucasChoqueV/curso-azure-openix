@@ -1,0 +1,26 @@
+# Usamos la imagen oficial de node y le ponemos el alias nodeBuild
+FROM  node:18  as  nodeBuild
+
+# Creamos la carpeta app como directorio de trabajo
+WORKDIR  /app
+
+# Copiamos todos los archivos al directorio de trabajo
+COPY  .  .
+
+# Instalamos las dependencias
+RUN  npm  install
+
+# Generamos la carpeta /dist con el proyecto buildeado
+RUN  npm  run  build
+
+# Usamos la imagen oficial de nginx
+FROM  nginx:alpine
+
+# Copiamos la carpeta /dist a la carpeta html
+COPY  --from=nodeBuild  /app/dist  /usr/share/nginx/html
+
+# Exponemos el puerto 80 para el servidor de nginx
+EXPOSE  80
+
+# Iniciamos nginx
+CMD  ["nginx",  "-g",  "daemon  off;"]
