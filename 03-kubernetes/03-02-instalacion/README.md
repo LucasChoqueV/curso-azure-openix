@@ -1,5 +1,5 @@
 
-# Usar el Custer de kubernetes con Docker Desktop
+# Usar el Cluster de kubernetes con Docker Desktop
 Al tener Docker Desktop tambien tenemos un Cluster de Kubernetes en donde podemos hacer pruebas locales, para habilitar el cluster vamos a **Settings** -> **Kubernetes** y habilitamos "Enable Kubernetes"
 ## Descargar kubectl
 kubectl es el cliente de kubernetes que necesitamos para interactuar con la API.
